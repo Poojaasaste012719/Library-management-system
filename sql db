@@ -1,0 +1,25 @@
+CREATE DATABASE library_db;
+USE library_db;
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE
+);
+
+CREATE TABLE books (
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200),
+    author VARCHAR(100),
+    quantity INT
+);
+
+CREATE TABLE issued_books (
+    issue_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT,
+    book_id INT,
+    issue_date DATE,
+    return_date DATE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
